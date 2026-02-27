@@ -119,7 +119,7 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          <FadeIn delayMs={100}>
+          <FadeIn delay={0.1}>
             <div className="flex items-center justify-center">
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-[#4682B4] shadow-[0_0_30px_rgba(70,130,180,0.25)]">
                 <Image

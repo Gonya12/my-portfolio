@@ -1,24 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function FadeIn({
   children,
   delay = 0,
 }: {
   children: React.ReactNode;
-  delay?: number; // seconds (0.1 = 100ms)
+  delay?: number;
 }) {
+  const [seen, setSeen] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 18 }}
+      animate={seen ? { opacity: 1, y: 0 } : undefined}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{
-        once: true,              // IMPORTANT: prevents re-hiding on scroll
-        amount: 0.12,            // IMPORTANT: easier to trigger on mobile
-        margin: "0px 0px -15% 0px", // trigger a bit earlier
-      }}
-      transition={{ duration: 0.65, ease: "easeOut", delay }}
+      onViewportEnter={() => setSeen(true)}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
     >
       {children}
     </motion.div>
